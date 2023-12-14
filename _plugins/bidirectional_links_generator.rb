@@ -24,7 +24,7 @@ class BidirectionalLinksGenerator < Jekyll::Generator
 
         title_from_data = note_potentially_linked_to.data['title']
         if title_from_data
-          title_from_data = Regexp.escape(title_from_data)
+          title_from_data = Regexp.escape(title_from_data.to_s)
         end
 
         new_href = "#{site.baseurl}#{note_potentially_linked_to.url}#{link_extension}"
@@ -106,6 +106,7 @@ class BidirectionalLinksGenerator < Jekyll::Generator
   end
 
   def note_id_from_note(note)
-    note.data['title'].bytes.join
+    #puts note.data['title']
+    note.data['title'].to_s.bytes.join
   end
 end
